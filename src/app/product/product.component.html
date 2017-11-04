@@ -1,6 +1,4 @@
-<h1>Trọng dơ làm ở trang ni nhé</h1>
-==========================================
-<div *ngIf="product">
+<!-- <div *ngIf="product">
 	<p>type: {{product.type}}</p>
 	<p>name: {{product.attributes.name}}</p>
 	<p>sold_out: {{product.attributes.sold_out}}</p>
@@ -8,4 +6,72 @@
 	<p>price: {{product.attributes.price}}</p>
 	<p>under_sale: {{product.attributes.under_sale}}</p>
 	<p>sale_price: {{product.attributes.sale_price}}</p>
+</div> -->
+
+<div *ngIf="product" class="row page-container">
+	<div class="col-md-4 section-image-slider">
+		<div class="main-image-wrap">
+			<div class="main-image">
+				<img src="https://www.sephora.com/productimages/product/p87985432-av-01-Lhero.jpg">
+			</div>
+			<div class="sub-text">Roll over image to zoom in</div>
+		</div>
+		<div class="thumnail-list">
+			<div class="thumbnail-list-wrap">
+				<div class="thumbnail-item">
+					<div class="item-img active">
+						<img src="https://www.sephora.com/productimages/product/p87985432-av-01-Lhero.jpg">
+					</div>
+				</div>
+				<div class="thumbnail-item">
+					<div class="item-img">
+						<img src="https://www.sephora.com/productimages/product/p87985432-av-05-Lhero.jpg">
+					</div>
+				</div>
+				<div class="thumbnail-item">
+					<div class="item-img">
+						<img src="https://www.sephora.com/productimages/product/p87985432-av-03-Lhero.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8 section-product-detail">
+		<div class="row">
+			<div class="product-detail col-md-7">
+				<div class="row">
+					<div class="product-name col-md-7">
+						<h5 class="product-title">{{product.attributes.name}}</h5>
+					</div>
+					<div class="product-price col-md-5">
+						<div class="price" [class.under-sale]="product.attributes.under_sale">${{product.attributes.price}}</div>
+						<div class="sale-price" *ngIf="product.attributes.under_sale">${{product.attributes.sale_price}}</div>
+						<div class="free-shipping">
+							SPEND $50 FOR FREE SHIPPING
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="product-cta col-md-5">
+				<div class="row">
+					<div class="col-md-4 qty-dropdown">
+						<label>
+							<select class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</label>
+					</div>
+					<div class="col-md-8 button-group">
+						<button class="btn btn-primary btn-block btn-add-basket">Add to Basket</button>
+						<button class="btn btn-secondary btn-block btn-add-loves">Add to Loves</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
