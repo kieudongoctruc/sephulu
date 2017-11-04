@@ -1,4 +1,4 @@
-<!-- <div *ngIf="product">
+<div *ngIf="product">
 	<p>type: {{product.type}}</p>
 	<p>name: {{product.attributes.name}}</p>
 	<p>sold_out: {{product.attributes.sold_out}}</p>
@@ -6,7 +6,7 @@
 	<p>price: {{product.attributes.price}}</p>
 	<p>under_sale: {{product.attributes.under_sale}}</p>
 	<p>sale_price: {{product.attributes.sale_price}}</p>
-</div> -->
+</div>
 
 <div *ngIf="product" class="row page-container">
 	<div class="col-md-4 section-image-slider">
@@ -67,6 +67,8 @@
 					</div>
 					<div class="col-md-8 button-group">
 						<button class="btn btn-primary btn-block btn-add-basket">Add to Basket</button>
+						<button class="btn btn-block btn-out-stock" *ngIf="product.attributes.sold_out">OUT OF STOCK
+							<br/><span class="ctn-email">EMAIL WHEN IN STOCK</span></button>
 						<button class="btn btn-secondary btn-block btn-add-loves">Add to Loves</button>
 					</div>
 				</div>
