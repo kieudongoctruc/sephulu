@@ -3,24 +3,16 @@
 @import '../../sass/mixins';
 @import '../../sass/color';
 
-.filter {
-    a, label {
-        color: $black;
-        font-size: $font-size-s;
-    }
-
-    .by-category {
-
-    }
-
-    .by-price {
-
-    }
+.page-container {
+    margin-top: 64px;
+    margin-bottom: 96px;
 }
 
 .thumbnail {
     text-align: center;
     margin-top: 30px;
+    padding-right: 24px;
+    padding-left: 24px;
 
     a:hover {
         text-decoration: none;
@@ -29,28 +21,106 @@
     .caption {
         color: $black;
         text-align: left;
+        margin-top: 24px;
 
         .name {
             font-size: $font-size-s;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: $font-weight-black;
             margin-bottom: 0;
+            color: $gray-900;
         }
 
         .price,
         .sale-price {
             font-size: $font-size-s;
-            font-weight: 600;
+            font-weight: $font-weight-black;
+            color: $gray-900;
         }
 
         .price.under-sale {
-            font-weight: 300;
+            font-weight: $font-weight-normal;
             text-decoration: line-through;
             color: $grey;
         }
 
         .sale-price {
             color: $red;
+        }
+    }
+}
+
+.sort-wrap {
+    float: right;
+}
+
+.sort-item-wrap {
+    margin-left: 16px;
+    .sort-title {
+        font-weight: $font-weight-black;
+        display: inline-block;
+        font-size: $font-size-s;
+        text-transform: capitalize;
+    }
+    .form-control {
+        display: inline-block;
+        &.sort {
+            width: 150px;
+        }
+        &.items-on-page {
+            width: 64px;
+        }
+    }
+}
+
+.filter-group {
+    border-top: solid 3px $gray-900;
+    margin-bottom: 16px;
+}
+
+.filter-title {
+    margin-top: 16px;
+    padding-bottom: 8px;
+    border-bottom: solid 1px $gray-400;
+}
+
+.by-category {
+    .cate-item {
+        display: block;
+        color: $gray-900;
+        font-size: 14px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+}
+
+.checkbox-group {
+    label {
+        cursor: pointer;
+        font-size: 14px;
+        input {
+            margin-right: 8px;
+        }
+    }
+}
+
+
+
+.btn {
+    cursor: pointer;
+    font-size: $font-size-s;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: $font-weight-bold;
+    color: $white;
+    width: 100%;
+
+    &.btn-secondary {
+        background-color: $white;
+        color: $gray-700;
+        &:active {
+            background-color: $white;
         }
     }
 }

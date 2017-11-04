@@ -1,0 +1,121 @@
+@import '../../sass/fonts';
+@import '../../sass/variables';
+@import '../../sass/mixins';
+@import '../../sass/color';
+@import '../../sass/custom';
+
+.page-container {
+    margin-top: 64px;
+    margin-bottom: 96px;
+}
+
+.main-image {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.sub-text {
+    text-align: center;
+    font-size: 12px;
+    color: $gray-600;
+    padding-top: 8px;
+    padding-bottom: 16px;
+}
+
+.thumbnail-list-wrap {
+    display: table;
+}
+
+.thumbnail-item {
+    display: table-cell;
+    padding: 8px 4px;
+
+    .item-img {
+        border-radius: 5px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    
+        &.active {
+            box-shadow: 0 0 0 3px $gray-800
+        }
+    }
+}
+
+.product-title {
+    text-transform: uppercase;
+    font-size: $font-size-m;
+    font-weight: $font-weight-black;
+}
+
+.price,
+.sale-price {
+    font-size: $font-size-m;
+    font-weight: $font-weight-black;
+}
+
+.price.under-sale {
+    font-weight: $font-weight-normal;
+    text-decoration: line-through;
+    color: $grey;
+}
+
+.free-shipping {
+    font-size: $font-size-s;
+    margin-top: 16px;
+    font-weight: $font-weight-black;
+}
+
+.qty-dropdown {
+    label {
+        width: 100%;
+    }
+}
+
+.button-group {
+    padding-left: 0;
+}
+
+.btn {
+    cursor: pointer;
+    font-size: $font-size-s;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: $font-weight-bold;
+    color: $white;
+
+    &.btn-primary {
+        background-color: $red;
+        border-color: $red;
+
+        &:active {
+            background-color: $red;
+        }
+        &:hover {
+            background-color: lighten($red, 5%);
+        }
+    }
+
+    &.btn-secondary {
+        background-color: $white;
+        color: $gray-700;
+        &:active {
+            background-color: $white;
+        }
+    }
+
+    &.btn-out-stock {
+        background-color: $gray-900;
+        font-weight: $font-weight-normal;
+
+        .ctn-email {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
