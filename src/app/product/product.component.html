@@ -66,7 +66,7 @@
 						</label>
 					</div>
 					<div class="col-md-8 button-group">
-						<button class="btn btn-primary btn-block btn-add-basket">Add to Basket</button>
+						<button class="btn btn-primary btn-block btn-add-basket" *ngIf="!product.attributes.sold_out">Add to Basket</button>
 						<button class="btn btn-block btn-out-stock" *ngIf="product.attributes.sold_out">OUT OF STOCK
 							<br/><span class="ctn-email">EMAIL WHEN IN STOCK</span></button>
 						<button class="btn btn-secondary btn-block btn-add-loves">Add to Loves</button>
