@@ -1,3 +1,11 @@
-<p>
-  product works!
-</p>
+<h1>Trọng dơ làm ở trang ni nhé</h1>
+==========================================
+<div *ngIf="product">
+	<p>type: {{product.type}}</p>
+	<p>name: {{product.attributes.name}}</p>
+	<p>sold_out: {{product.attributes.sold_out}}</p>
+	<p>category: {{product.attributes.category}}</p>
+	<p>price: {{product.attributes.price}}</p>
+	<p>under_sale: {{product.attributes.under_sale}}</p>
+	<p>sale_price: {{product.attributes.sale_price}}</p>
+</div>
