@@ -1,0 +1,40 @@
+@import '../../sass/fonts';
+@import '../../sass/variables';
+@import '../../sass/mixins';
+@import '../../sass/color';
+
+.thumbnail {
+    text-align: center;
+    margin-top: 30px;
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .caption {
+        text-align: left;
+
+        .name {
+            font-size: $font-size-s;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .price,
+        .sale-price {
+            font-size: $font-size-s;
+            font-weight: 600;
+        }
+
+        .price.under-sale {
+            font-weight: 300;
+            text-decoration: line-through;
+            color: $grey;
+        }
+
+        .sale-price {
+            color: $red;
+        }
+    }
+}

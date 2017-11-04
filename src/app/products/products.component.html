@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-3 filter">
+        <div class="by-category">
+            <h6><strong>Category</strong></h6>
+            <a href="">See all categories</a>
+            <a href="">Tools</a>
+            <a href="">Brushes</a>
+        </div>
+
+        <div class="by-price">
+            <h6><strong>Price</strong></h6>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="25"> Under $25
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="50"> $25 - $50
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="100"> $50 - $100
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="150"> $100 - $150
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="300"> $150 - $300
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="priceFilter" value="301"> Above $300
+                </label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-default">CLEAR ALL FILTERS</button>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <label>Sort by:
+                    <select class="form-control">
+                        <option>Low To High</option>
+                        <option>Hight To Low</option>
+                    </select>
+                </label>
+                <label>View:
+                    <select class="form-control">
+                        <option>25</option>
+                        <option>All</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4 thumbnail" *ngFor="let product of products">
+                <a [routerLink]="['/product', product.id]">
+                    <img src="http://via.placeholder.com/135x135">
+                    <p></p>
+                    <div class="caption">
+                        <p class="name">{{product.attributes.name}}</p>
+                        <p>
+                            <span class="price" [class.under-sale]="product.attributes.under_sale">${{product.attributes.price}}</span>
+                            <span class="sale-price" *ngIf="product.attributes.under_sale">${{product.attributes.sale_price}}</span>
+                        </p>
+                  </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
