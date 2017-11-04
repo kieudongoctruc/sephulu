@@ -8,6 +8,7 @@ import { AppComponent }       from './app.component';
 import { ProductsComponent }  from './products/products.component';
 import { ProductComponent }   from './product/product.component';
 import { ProductsService }   from './products/products.service';
+import { ProductService }   from './product/product.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductsService }   from './products/products.service';
     AppRoutingModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
