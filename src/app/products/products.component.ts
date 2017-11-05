@@ -19,7 +19,8 @@ export class ProductsComponent implements OnInit {
   view_by = this.DEFAULT_VIEW_BY;
   priceFilter = [];
   filter = {};
-  page = 1;
+  currentPageNumber : number;
+  lastPageNumber : number;
 
   constructor(
     private productsService: ProductsService,
@@ -29,9 +30,15 @@ export class ProductsComponent implements OnInit {
   getProducts(queryParams): void {
     this.productsService
         .getProducts(queryParams)
-        .then(products => {
-          this.products = products;
-        });
+        .then(
+          products => {
+            this.currentPageNumber = this.productsService.currentPageNumber;
+            this.lastPageNumber = this.productsService.lastPageNumber;
+            this.products = products;
+          },
+          error => {
+            this.products = [];
+          });
   }
 
   ngOnInit(): void {

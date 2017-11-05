@@ -9,7 +9,8 @@ import { Product } from '../product/product';
 export class ProductsService {
 
   private productsUrl = 'https://sephora-api-frontend-test.herokuapp.com/products';  // URL to web api
-  public totalProductsCount = 0;
+  public currentPageNumber : number = 1;
+  public lastPageNumber : number = 1;
 
   priceFilterOptions = {
     0: { lt: 2500 },
@@ -34,7 +35,16 @@ export class ProductsService {
     return this.http.get(url)
                .toPromise()
                .then(response => {
-                  this.totalProductsCount = response.json().links;
+                console.log(response.json().links);
+                  if (response.json().links) {
+                    this.currentPageNumber = this.getParamValueByName(response.json().links.self, 'page%5Bnumber%5D');
+                    if (Object.keys(response.json().links).indexOf('last')) {
+                      this.lastPageNumber =  this.getParamValueByName(response.json().links.last, 'page%5Bnumber%5D');
+                    }
+                    else {
+                      this.getParamValueByName(response.json().links.self, 'page%5Bnumber%5D');
+                    }
+                  }
                   return response.json().data as Product[];
                 })
                .catch(this.handleError);
@@ -58,6 +68,9 @@ export class ProductsService {
           break;
         case 'view':
           params = value.length == 0 ? [''] : [`page[size]=${value}`];
+          break;
+        case 'page':
+          params = value.length == 0 ? [''] : [`page[number]=${value}`];
           break;
       }
       query.push(params);
@@ -92,4 +105,15 @@ export class ProductsService {
     return Promise.reject(error.message || error);
   }
 
+  getParamValueByName(url, paramName) {
+    if (typeof url == 'undefined') return '';
+    var queryParams = {};
+    var hashes = url.slice(url.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      let hash = hashes[i].split('=');
+      queryParams[hash[0]] = hash[1];
+    }
+    return queryParams[paramName];
+  }
 }

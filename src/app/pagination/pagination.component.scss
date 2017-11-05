@@ -1,0 +1,14 @@
+@import '../../sass/fonts';
+@import '../../sass/variables';
+@import '../../sass/mixins';
+@import '../../sass/color';
+
+button.page-number {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &.bold {
+        font-weight: $font-weight-bold;
+    }
+}

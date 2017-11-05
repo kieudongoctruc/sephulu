@@ -1,0 +1,1 @@
+<button class="page-number" [class.bold]="number + 1 == currentPageNumber" *ngFor="let number of list_numbers" (click)="viewProductsAt(number + 1)">{{number + 1}}</button>

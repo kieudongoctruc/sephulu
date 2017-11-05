@@ -10,12 +10,14 @@ import { ProductsComponent }  from './products/products.component';
 import { ProductComponent }   from './product/product.component';
 import { ProductsService }   from './products/products.service';
 import { ProductService }   from './product/product.service';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
