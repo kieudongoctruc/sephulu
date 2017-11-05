@@ -13,6 +13,7 @@
     margin-top: 30px;
     padding-right: 24px;
     padding-left: 24px;
+    position: relative;
 
     a:hover {
         text-decoration: none;
@@ -46,6 +47,26 @@
         .sale-price {
             color: $red;
         }
+    }
+}
+
+.product-wrap {
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    .sold-out {
+        position: absolute;
+        top: 27px;
+        right: -27px;
+        padding: 4px 16px;
+        background-color: $gray-900;
+        color: $white;
+        text-transform: uppercase;
+        font-size: $font-size-xs;
+        transform: rotate(45deg);
+        font-weight: $font-weight-bold;
+        width: 130px;
     }
 }
 
@@ -117,6 +138,8 @@
     &.btn-secondary {
         background-color: $white;
         color: $gray-700;
+        margin-bottom: 30px;
+
         &:active {
             background-color: $white;
         }
