@@ -19,7 +19,7 @@ export class ProductsService {
   @params: null
   @return array of Product model
   ***/
-  getProducts(): Promise<Product[]> {
+  getProducts(queryParams = {}): Promise<Product[]> {
     return this.http.get(this.productsUrl)
                .toPromise()
                .then(response => {

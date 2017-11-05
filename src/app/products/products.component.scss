@@ -3,6 +3,21 @@
 @import '../../sass/mixins';
 @import '../../sass/color';
 
+.filter {
+    a, label {
+        color: $black;
+        font-size: $font-size-s;
+    }
+
+    .by-category {
+
+    }
+
+    .by-price {
+
+    }
+}
+
 .thumbnail {
     text-align: center;
     margin-top: 30px;
@@ -12,6 +27,7 @@
     }
 
     .caption {
+        color: $black;
         text-align: left;
 
         .name {

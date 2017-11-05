@@ -2,41 +2,41 @@
     <div class="col-md-3 filter">
         <div class="by-category">
             <h6><strong>Category</strong></h6>
-            <a href="">See all categories</a>
-            <a href="">Tools</a>
-            <a href="">Brushes</a>
+            <a [routerLink]="['/products']" [queryParams]="{}">See all categories</a><br>
+            <a [routerLink]="['/products']" [queryParams]="{category: 'tools'}" queryParamsHandling="merge">Tools</a><br>
+            <a [routerLink]="['/products']" [queryParams]="{category: 'brushes'}" queryParamsHandling="merge">Brushes</a>
         </div>
 
         <div class="by-price">
             <h6><strong>Price</strong></h6>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="25"> Under $25
+                    <input type="checkbox" name="priceFilter" value="0" (change)="filterByPriceChanged($event)"> Under $25
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="50"> $25 - $50
+                    <input type="checkbox" name="priceFilter" value="1" (change)="filterByPriceChanged($event)"> $25 - $50
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="100"> $50 - $100
+                    <input type="checkbox" name="priceFilter" value="2" (change)="filterByPriceChanged($event)"> $50 - $100
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="150"> $100 - $150
+                    <input type="checkbox" name="priceFilter" value="3" (change)="filterByPriceChanged($event)"> $100 - $150
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="300"> $150 - $300
+                    <input type="checkbox" name="priceFilter" value="4" (change)="filterByPriceChanged($event)"> $150 - $300
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="priceFilter" value="301"> Above $300
+                    <input type="checkbox" name="priceFilter" value="5" (change)="filterByPriceChanged($event)"> Above $300
                 </label>
             </div>
         </div>
@@ -44,19 +44,18 @@
     </div>
     <div class="col-md-9">
         <div class="row">
-            <div class="col-md-8 col-md-offset-4">
-                <label>Sort by:
-                    <select class="form-control">
-                        <option>Low To High</option>
-                        <option>Hight To Low</option>
-                    </select>
-                </label>
-                <label>View:
-                    <select class="form-control">
-                        <option>25</option>
-                        <option>All</option>
-                    </select>
-                </label>
+            <div class="col-md-4"></div>
+            <div class="col-sm-12 col-md-8">
+                <label>Sort by</label>
+                <select class="form-control" [(ngModel)]="sort_by">
+                    <option value="price">Low To High</option>
+                    <option value="-price">High To Low</option>
+                </select>
+                <label>View:</label>
+                <select class="form-control" [(ngModel)]="view_by">
+                    <option value="25">25</option>
+                    <option value="all">All</option>
+                </select>
             </div>
         </div>
         <div class="row">
@@ -67,8 +66,8 @@
                     <div class="caption">
                         <p class="name">{{product.attributes.name}}</p>
                         <p>
-                            <span class="price" [class.under-sale]="product.attributes.under_sale">${{product.attributes.price}}</span>
-                            <span class="sale-price" *ngIf="product.attributes.under_sale">${{product.attributes.sale_price}}</span>
+                            <span class="price" [class.under-sale]="product.attributes.under_sale">{{product.attributes.price | currency:'USD':true:'1.2-2'}}</span>
+                            <span class="sale-price" *ngIf="product.attributes.under_sale">{{product.attributes.sale_price | currency:'USD':true:'1.2-2'}}</span>
                         </p>
                   </div>
                 </a>

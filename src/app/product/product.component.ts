@@ -17,11 +17,9 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.product);
     this.route.paramMap
       .switchMap((params: ParamMap) => this.productService.getProduct(+params.get('id')))
       .subscribe(product => {
-        console.log(product);
         this.product = product;
       });
   }
