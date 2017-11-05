@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
-import { ActivatedRoute, ParamMap, Params, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
 import { Product }         from '../product/product';
 import { ProductsService } from './products.service';
@@ -11,30 +11,24 @@ import { ProductsService } from './products.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  DEFAULT_SORT_BY = 'price' // Low to High
-  DEFAULT_VIEW_BY = 25 // How many products are displayed per page
+  DEFAULT_SORT_BY = ''; // Low to High
+  DEFAULT_VIEW_BY = 25; // How many products are displayed per page
 
   products: Product[];
   sort_by = this.DEFAULT_SORT_BY;
   view_by = this.DEFAULT_VIEW_BY;
   priceFilter = [];
-  price_filter_options = {
-    0: { max: 25 },
-    1: { min: 25, max: 50 },
-    2: { min: 50, max: 100 },
-    3: { min: 100, max: 150 },
-    4: { min: 150, max: 300 },
-    5: { min: 300 }
-  }
+  filter = {};
+  page = 1;
 
   constructor(
     private productsService: ProductsService,
     private router: Router,
     private route: ActivatedRoute) { }
 
-  getProducts(): void {
+  getProducts(queryParams): void {
     this.productsService
-        .getProducts()
+        .getProducts(queryParams)
         .then(products => {
           this.products = products;
         });
@@ -42,7 +36,6 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => this.queryParamsChanged(params));
-    this.getProducts();
   }
 
   filterByPriceChanged(e) {
@@ -58,15 +51,29 @@ export class ProductsComponent implements OnInit {
       }
     }
 
-    // set the query params
+    this.setQueryParams({ 'price': this.priceFilter });
+  }
+
+  filterBySortChanged(e) { this.setQueryParams({ 'sort': this.sort_by }) }
+
+  filterByViewChanged(e) { this.setQueryParams({ 'view': this.view_by }) }
+
+  setQueryParams(queryParams) {
     let navigationExtras: NavigationExtras = {
-      queryParams: { 'price': this.priceFilter },
+      queryParams: queryParams,
       queryParamsHandling: 'merge'
     };
     this.router.navigate(['/products'], navigationExtras);
   }
 
   queryParamsChanged(params) {
-    console.log(params);
+    this.filter = params;
+    this.sort_by = params.sort ? params.sort : this.DEFAULT_SORT_BY;
+    this.view_by = params.view ? params.view : this.DEFAULT_VIEW_BY;
+    this.getProducts(params);
+  }
+
+  clearAllFilters() {
+    this.router.navigate(['/products'], { queryParams: {} });
   }
 }

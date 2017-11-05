@@ -34,8 +34,8 @@
 						<h5 class="product-title">{{product.attributes.name}}</h5>
 					</div>
 					<div class="product-price col-md-5">
-						<div class="price" [class.under-sale]="product.attributes.under_sale">${{product.attributes.price}}</div>
-						<div class="sale-price" *ngIf="product.attributes.under_sale">${{product.attributes.sale_price}}</div>
+						<div class="price" [class.under-sale]="product.attributes.under_sale">${{product.attributes.price/100}}</div>
+						<div class="sale-price" *ngIf="product.attributes.under_sale">${{product.attributes.sale_price/100}}</div>
 						<div class="free-shipping">
 							SPEND $50 FOR FREE SHIPPING
 						</div>
