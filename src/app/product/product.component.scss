@@ -4,11 +4,6 @@
 @import '../../sass/color';
 @import '../../sass/custom';
 
-.page-container {
-    margin-top: 64px;
-    margin-bottom: 96px;
-}
-
 .main-image {
     img {
         width: 100%;
@@ -26,25 +21,26 @@
 
 .thumbnail-list-wrap {
     display: table;
-}
 
-.thumbnail-item {
-    display: table-cell;
-    padding: 8px 4px;
+    .thumbnail-item {
+        display: table-cell;
+        padding: 8px 4px;
 
-    .item-img {
-        border-radius: 5px;
-        overflow: hidden;
-        img {
-            width: 100%;
-            height: auto;
-        }
-    
-        &.active {
-            box-shadow: 0 0 0 3px $gray-800
+        .item-img {
+            border-radius: 5px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            &.active {
+                box-shadow: 0 0 0 3px $gray-800
+            }
         }
     }
 }
+
 
 .product-title {
     text-transform: uppercase;
@@ -74,10 +70,6 @@
     label {
         width: 100%;
     }
-}
-
-.button-group {
-    padding-left: 0;
 }
 
 .btn {

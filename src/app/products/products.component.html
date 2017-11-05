@@ -2,8 +2,8 @@
     <div class="col-md-3 filter">
         <div class="filter-group by-category">
             <h6 class="filter-title"><strong>Category</strong></h6>
-            <a class="cate-item" [routerLink]="['/products']" [queryParams]="{}">See all categories</a><br>
-            <a class="cate-item" [routerLink]="['/products']" [queryParams]="{category: 'tools'}" queryParamsHandling="merge">Tools</a><br>
+            <a class="cate-item" [routerLink]="['/products']" [queryParams]="{}">See all categories</a>
+            <a class="cate-item" [routerLink]="['/products']" [queryParams]="{category: 'tools'}" queryParamsHandling="merge">Tools</a>
             <a class="cate-item" [routerLink]="['/products']" [queryParams]="{category: 'brushes'}" queryParamsHandling="merge">Brushes</a>
         </div>
 
@@ -67,7 +67,8 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-4 thumbnail" *ngFor="let product of products">
-                <a [routerLink]="['/product', product.id]">
+                <a class="product-wrap" [routerLink]="['/product', product.id]">
+                    <div class="sold-out" *ngIf="product.attributes.sold_out">Out of stock</div>
                     <img src="https://www.sephora.com/productimages/sku/s1925965-main-grid@2x.jpg">
                     <div class="caption">
                         <p class="name">{{product.attributes.name}}</p>

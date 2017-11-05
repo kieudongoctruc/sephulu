@@ -3,16 +3,12 @@
 @import '../../sass/mixins';
 @import '../../sass/color';
 
-.page-container {
-    margin-top: 64px;
-    margin-bottom: 96px;
-}
-
 .thumbnail {
     text-align: center;
     margin-top: 30px;
     padding-right: 24px;
     padding-left: 24px;
+    position: relative;
 
     a:hover {
         text-decoration: none;
@@ -50,28 +46,47 @@
     }
 }
 
-.sort-wrap {
-    float: right;
+.product-wrap {
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    .sold-out {
+        position: absolute;
+        top: 25px;
+        right: -27px;
+        padding: 4px 16px;
+        background-color: $gray-900;
+        color: $white;
+        text-transform: uppercase;
+        font-size: $font-size-xs;
+        transform: rotate(45deg);
+        font-weight: $font-weight-bold;
+        width: 130px;
+    }
 }
 
-.sort-item-wrap {
-    margin-left: 16px;
-    .sort-title {
-        font-weight: $font-weight-black;
-        display: inline-block;
-        font-size: $font-size-s;
-        text-transform: capitalize;
-    }
-    .form-control {
-        display: inline-block;
-        &.sort {
-            width: 150px;
+.sort-wrap {
+    float: right;
+
+    .sort-item-wrap {
+        margin-left: 16px;
+
+        .sort-title {
+            font-weight: $font-weight-black;
+            display: inline-block;
+            font-size: $font-size-s;
+            text-transform: capitalize;
         }
-        &.items-on-page {
-            width: 64px;
+
+        select.form-control {
+            display: inline-block;
+            width: fit-content;
+            height: auto;
         }
     }
 }
+
 
 .filter-group {
     border-top: solid 3px $gray-900;
@@ -105,7 +120,6 @@
 }
 
 
-
 .btn {
     cursor: pointer;
     font-size: $font-size-s;
@@ -119,6 +133,8 @@
     &.btn-secondary {
         background-color: $white;
         color: $gray-700;
+        margin-bottom: 30px;
+
         &:active {
             background-color: $white;
         }
