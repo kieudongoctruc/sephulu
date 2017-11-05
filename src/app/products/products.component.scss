@@ -51,26 +51,25 @@
 
 .sort-wrap {
     float: right;
+
+    .sort-item-wrap {
+        margin-left: 16px;
+
+        .sort-title {
+            font-weight: $font-weight-black;
+            display: inline-block;
+            font-size: $font-size-s;
+            text-transform: capitalize;
+        }
+
+        select.form-control {
+            display: inline-block;
+            width: fit-content;
+            height: auto;
+        }
+    }
 }
 
-.sort-item-wrap {
-    margin-left: 16px;
-    .sort-title {
-        font-weight: $font-weight-black;
-        display: inline-block;
-        font-size: $font-size-s;
-        text-transform: capitalize;
-    }
-    .form-control {
-        display: inline-block;
-        &.sort {
-            width: 150px;
-        }
-        &.items-on-page {
-            width: 64px;
-        }
-    }
-}
 
 .filter-group {
     border-top: solid 3px $gray-900;
