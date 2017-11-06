@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavigationExtras } from '@angular/router';
+import { Router }                              from '@angular/router';
+import { NavigationExtras }                    from '@angular/router';
 
 import { Product } from '../product/product';
 
@@ -25,6 +25,12 @@ export class PaginationComponent implements OnInit {
     }
   }
 
+  /***
+  @function viewProductsAt
+  @desc: view products at any page number
+  @params: a page number
+  @return error as Promise
+  ***/
   viewProductsAt(pageNumber) {
     let navigationExtras: NavigationExtras = {
       queryParams: { 'page': pageNumber},
@@ -32,5 +38,4 @@ export class PaginationComponent implements OnInit {
     };
     this.router.navigate(['/products'], navigationExtras);
   }
-
 }

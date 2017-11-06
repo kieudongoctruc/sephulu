@@ -26,8 +26,8 @@ export class ProductsService {
   /***
   @function getProducts
   @desc: get list products
-  @params: null
-  @return array of Product model
+  @params: query params object which is used to create query string
+  @return list of products
   ***/
   getProducts(queryParams = {}): Promise<Product[]> {
     let queryString = this.createQueryString(queryParams);
@@ -35,7 +35,7 @@ export class ProductsService {
     return this.http.get(url)
                .toPromise()
                .then(response => {
-                console.log(response.json().links);
+                  // get how many pages the site has with current filter
                   if (response.json().links) {
                     this.currentPageNumber = this.getParamValueByName(response.json().links.self, 'page%5Bnumber%5D');
                     if (Object.keys(response.json().links).indexOf('last')) {
@@ -50,8 +50,13 @@ export class ProductsService {
                .catch(this.handleError);
   }
 
+  /***
+  @function createQueryString
+  @desc: building query string after ? of url, ex: filter[category_in]=tools,brushes&sort=price&page[number]=2&page[size]=20
+  @params: query params object which including all filter options user chose
+  @return query string
+  ***/
   private createQueryString(queryParams) {
-    console.log(queryParams);
     let query = [];
     for (let key in queryParams) {
       let value = queryParams[key];
@@ -80,11 +85,15 @@ export class ProductsService {
     //remove empty elements
     query = query.filter(function(n) { return n != '' });
     //join all elements to be a completed string
-    console.log(query.join('&'));
-    // query = query.join('&');
     return query.join('&');
   }
 
+  /***
+  @function createPriceQueryString
+  @desc: building query params string related to price cause it's more complex than the other ones.
+  @params: price filter options user chose
+  @return array of price query string, ex: ["filter[price_mt]=1000", "filter[price_lt]=2000"]
+  ***/
   private createPriceQueryString(priceOptions) {
     let query = [];
     if (priceOptions instanceof Array) {
@@ -100,11 +109,23 @@ export class ProductsService {
     return query;
   }
 
+  /***
+  @function handleError
+  @desc: if the request failed, this functions is called
+  @params: error
+  @return error as Promise
+  ***/
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 
+  /***
+  @function handleError
+  @desc: if the request failed, this functions is called
+  @params: error
+  @return error as Promise
+  ***/
   getParamValueByName(url, paramName) {
     if (typeof url == 'undefined') return '';
     var queryParams = {};

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Component, OnInit }                        from '@angular/core';
+import { Router }                                   from '@angular/router';
 import { ActivatedRoute, Params, NavigationExtras } from '@angular/router';
 
 import { Product }         from '../product/product';
@@ -27,6 +27,12 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
+  /***
+  @function getProducts
+  @desc: call api to get list products
+  @params: queryParams
+  @return void
+  ***/
   getProducts(queryParams): void {
     this.productsService
         .getProducts(queryParams)
@@ -45,6 +51,25 @@ export class ProductsComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => this.queryParamsChanged(params));
   }
 
+  /***
+  @function queryParamsChanged
+  @desc: watch if url is changed, then get list products again to update following the filter
+  @params: params on url
+  @return void
+  ***/
+  queryParamsChanged(params) {
+    this.filter = params;
+    this.sort_by = params.sort ? params.sort : this.DEFAULT_SORT_BY;
+    this.view_by = params.view ? params.view : this.DEFAULT_VIEW_BY;
+    this.getProducts(params);
+  }
+
+  /***
+  @function filterByPriceChanged
+  @desc: watch if the filter for price is changed, then update the route with new filter options
+  @params: $event
+  @return void
+  ***/
   filterByPriceChanged(e) {
     // push the checked value to the price filter list
     // or get it out of the price filter list if unchecked it
@@ -61,10 +86,28 @@ export class ProductsComponent implements OnInit {
     this.setQueryParams({ 'price': this.priceFilter });
   }
 
+  /***
+  @function filterBySortChanged
+  @desc: watch if the filter for sort by is changed, then update the route with new filter options
+  @params: $event
+  @return void
+  ***/
   filterBySortChanged(e) { this.setQueryParams({ 'sort': this.sort_by }) }
 
+  /***
+  @function filterByViewChanged
+  @desc: watch if the filter for view by is changed, then update the route with new filter options
+  @params: $event
+  @return void
+  ***/
   filterByViewChanged(e) { this.setQueryParams({ 'view': this.view_by }) }
 
+  /***
+  @function setQueryParams
+  @desc: set filter to be  query params on url
+  @params: queryParams
+  @return void
+  ***/
   setQueryParams(queryParams) {
     let navigationExtras: NavigationExtras = {
       queryParams: queryParams,
@@ -73,13 +116,12 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/products'], navigationExtras);
   }
 
-  queryParamsChanged(params) {
-    this.filter = params;
-    this.sort_by = params.sort ? params.sort : this.DEFAULT_SORT_BY;
-    this.view_by = params.view ? params.view : this.DEFAULT_VIEW_BY;
-    this.getProducts(params);
-  }
-
+  /***
+  @function clearAllFilters
+  @desc: clear all filters user chose
+  @params:
+  @return void
+  ***/
   clearAllFilters() {
     this.router.navigate(['/products'], { queryParams: {} });
   }
